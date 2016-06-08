@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+WEEDIR=".weechat/python/autoload"
+WEESLACK="https://raw.githubusercontent.com/rawdigits/wee-slack/master/wee_slack.py"
+
+if [ ! -d "${WEEDIR}" ]; then
+    CURRENT_DIR=$(pwd)
+    mkdir -p ${WEEDIR}
+    cd ${WEEDIR} && wget --quiet ${WEESLACK}
+    cd ${CURRENT_DIR}
+fi
+
+docker run \
+       -v $(pwd)/.weechat:/home/user/.weechat \
+       -p 9000:9000 \
+       ${WEESLACK_DOCKER_OPTIONS} \
+       -it weeslack
