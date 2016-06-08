@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache weechat py-pip && \
+RUN apk add --no-cache weechat weechat-python py-pip && \
     pip install websocket-client
 
 ENV LANG C.UTF-8
